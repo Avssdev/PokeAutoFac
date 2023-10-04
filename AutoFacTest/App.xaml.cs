@@ -25,12 +25,12 @@ namespace AutoFacTest
             var builder = new ContainerBuilder();
 
             // builder.RegisterType<PokeLocalRepository>().As<IPokeRepository>().SingleInstance();
-            builder.RegisterType<PokeApiNetRepository>().As<IPokeRepository>().SingleInstance();
+            builder.RegisterType<PokeApiNetRepository>().As<IPokeRepository>();
             builder.RegisterType<MainPageViewModel>().OnActivated(e => e.Instance.LoadPokemons());
 
             builder.RegisterType<SaveCommand>().As<ICommand>().WithMetadata("Name", "Save Pokemon");
             builder.RegisterType<OpenCommand>().As<ICommand>().WithMetadata("Name", "Open Pokemon");
-            builder.RegisterAdapter<Meta<ICommand>, ToolbarButton>(cmd => new ToolbarButton(cmd.Value, (string)cmd.Metadata["Name"]));
+            builder.RegisterAdapter<Meta<ICommand>, IToolbarButton>(cmd => new ToolbarButton(cmd.Value, (string)cmd.Metadata["Name"]));
 
             Container = builder.Build();
         }

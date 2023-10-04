@@ -13,7 +13,7 @@ namespace AutoFacTest.Commands
         public void Execute(object parameter)
         {
             Pokemon pokemon = parameter as Pokemon;
-            Debug.WriteLine("Saving command...");
+            Debug.WriteLine("Save command has been clicked.");
         }
     }
 
@@ -22,14 +22,20 @@ namespace AutoFacTest.Commands
         public void Execute(object parameter)
         {
             Pokemon pokemon = parameter as Pokemon;
-            Debug.WriteLine("Opening command...");
+            Debug.WriteLine("Open command has been clicked.");
         }
     }
 
-    public class ToolbarButton
+    public interface IToolbarButton
+    {
+        string Name { get; set; }
+        void Click(object parameter);
+    }
+
+    public class ToolbarButton : IToolbarButton
     {
         readonly ICommand _command;
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         public ToolbarButton(ICommand command, string name)
         {

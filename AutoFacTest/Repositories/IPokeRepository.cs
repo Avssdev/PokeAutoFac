@@ -1,10 +1,10 @@
 ﻿using AutoFacTest.Models;
-using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
 
 namespace AutoFacTest.Repositories
 {
-    public interface IPokeRepository
+    public interface IPokeRepository : IDisposable
     {
         Task<PokemonCollection> GetFirstTwentyPokemons();
 

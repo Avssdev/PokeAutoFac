@@ -33,5 +33,10 @@ namespace AutoFacTest.Repositories.PokeApiNet
 
             return result;
         }
+
+        public void Dispose()
+        {
+            pokeClient.Dispose();
+        }
     }
 }
